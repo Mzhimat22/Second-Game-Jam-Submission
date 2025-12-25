@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://vxj3ik5ifty"]
+
+[ext_resource type="Script" path="res://scripts/splashscreen.gd" id="1_4plax"]
+[ext_resource type="Texture2D" uid="uid://cj0bpxy54pof8" path="res://assets/fonts/A Penguin From The Desert.png" id="2_qv01x"]
+[ext_resource type="FontFile" uid="uid://b6g2315dxhekj" path="res://assets/fonts/Golfwinks Free.ttf" id="3_n4s5l"]
+[ext_resource type="FontFile" uid="uid://co8jyk8v5w7vh" path="res://assets/fonts/Adventure.otf" id="4_qxker"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_4g68r"]
+font = ExtResource("3_n4s5l")
+font_size = 100
+
+[sub_resource type="LabelSettings" id="LabelSettings_2g8vm"]
+font = ExtResource("4_qxker")
+font_size = 120
+font_color = Color(0, 0.729104, 0.276748, 1)
+
+[node name="splashscreen" type="CanvasLayer"]
+script = ExtResource("1_4plax")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(960, 700)
+texture = ExtResource("2_qv01x")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 764.0
+offset_top = 200.0
+offset_right = 1156.0
+offset_bottom = 275.0
+text = "Made with love by"
+label_settings = SubResource("LabelSettings_4g68r")
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 301.0
+offset_top = 300.0
+offset_right = 1619.0
+offset_bottom = 483.0
+text = "A Penguin From the Desert"
+label_settings = SubResource("LabelSettings_2g8vm")

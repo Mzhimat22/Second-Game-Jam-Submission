@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cutwa704ur1sn"]
+
+[ext_resource type="AudioStream" uid="uid://v5phsy0p8rnu" path="res://sounds/GolfingTheme.ogg" id="1_e5u1i"]
+[ext_resource type="Script" path="res://scripts/music.gd" id="2_oq11u"]
+
+[node name="music" type="AudioStreamPlayer"]
+stream = ExtResource("1_e5u1i")
+volume_db = -8.0
+script = ExtResource("2_oq11u")

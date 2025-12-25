@@ -1,0 +1,136 @@
+[gd_scene load_steps=21 format=3 uid="uid://baomxw20eoree"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_7yb4s"]
+[ext_resource type="Texture2D" uid="uid://c0uqyjyt8sldb" path="res://assets/Dynamite Kitty animation.png" id="2_yl1b6"]
+[ext_resource type="Texture2D" uid="uid://y42shcndqy12" path="res://assets/Explosion animation(1).png" id="3_0wmn2"]
+[ext_resource type="Texture2D" uid="uid://0xwm4p7yn32e" path="res://assets/Dynamite Kitty jump.png" id="3_6hxgl"]
+[ext_resource type="Texture2D" uid="uid://dt4egptb6waoh" path="res://assets/Dynamite Kitty idle.png" id="3_ilu5y"]
+[ext_resource type="AudioStream" uid="uid://b8jpdi4oikevj" path="res://sounds/cat-meow-401729.wav" id="6_ibqs8"]
+[ext_resource type="AudioStream" uid="uid://dyv8d28amgqs4" path="res://sounds/cat-screaming.wav" id="7_golru"]
+[ext_resource type="AudioStream" uid="uid://bq4rwrk4igc0b" path="res://sounds/medium-explosion-40472.wav" id="8_yskci"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kif25"]
+atlas = ExtResource("2_yl1b6")
+region = Rect2(0, 0, 576, 288)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xd20p"]
+atlas = ExtResource("2_yl1b6")
+region = Rect2(576, 0, 576, 288)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ggx62"]
+atlas = ExtResource("2_yl1b6")
+region = Rect2(1152, 0, 576, 288)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uokbp"]
+atlas = ExtResource("2_yl1b6")
+region = Rect2(1728, 0, 576, 288)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8isju"]
+atlas = ExtResource("3_0wmn2")
+region = Rect2(0, 0, 576, 288)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7yfcg"]
+atlas = ExtResource("3_0wmn2")
+region = Rect2(576, 0, 576, 288)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ba682"]
+atlas = ExtResource("3_0wmn2")
+region = Rect2(1152, 0, 576, 288)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dm4ka"]
+atlas = ExtResource("3_ilu5y")
+region = Rect2(576, 0, 576, 288)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_om6xl"]
+atlas = ExtResource("3_ilu5y")
+region = Rect2(0, 0, 576, 288)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yfhug"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kif25")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xd20p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ggx62")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uokbp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 30.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8isju")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7yfcg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ba682")
+}],
+"loop": false,
+"name": &"explode",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dm4ka")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_om6xl")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_6hxgl")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 1.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6ppo5"]
+size = Vector2(260.998, 125.872)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4e208"]
+size = Vector2(600, 315)
+
+[node name="Player" type="CharacterBody2D"]
+scale = Vector2(0.2, 0.2)
+script = ExtResource("1_7yb4s")
+
+[node name="CatSprite" type="AnimatedSprite2D" parent="."]
+z_index = 3
+position = Vector2(22.3411, -0.468216)
+sprite_frames = SubResource("SpriteFrames_yfhug")
+animation = &"explode"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 62.327)
+shape = SubResource("RectangleShape2D_6ppo5")
+
+[node name="Area2D" type="Area2D" parent="." groups=["player"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(50, 22.5)
+shape = SubResource("RectangleShape2D_4e208")
+
+[node name="meow" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_ibqs8")
+volume_db = -16.0
+
+[node name="shriek" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_golru")
+volume_db = -8.0
+
+[node name="explosion" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_yskci")

@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dvfy2iej04u5w"]
+
+[ext_resource type="Texture2D" uid="uid://bfq57vvexhror" path="res://assets/Hole(1).png" id="1_0fxq7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tb8q1"]
+radius = 81.0
+
+[node name="Hole" type="Area2D" groups=["hole"]]
+z_index = 1
+scale = Vector2(0.3, 0.3)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_0fxq7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(4, 211)
+shape = SubResource("CircleShape2D_tb8q1")
